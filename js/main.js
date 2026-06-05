@@ -1,9 +1,8 @@
-const BASE = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
-  ? ''
-  : '';
+// Resolve path to data/ relative to current page depth
+const ROOT = location.pathname.includes('/posts/') ? '../' : './';
 
 async function fetchJSON(path) {
-  const res = await fetch(BASE + path);
+  const res = await fetch(ROOT + path);
   if (!res.ok) throw new Error('fetch failed: ' + path);
   return res.json();
 }
@@ -27,12 +26,12 @@ async function loadHome() {
 
   if (postsList) {
     try {
-      const posts = await fetchJSON('/data/posts.json');
+      const posts = await fetchJSON('data/posts.json');
       if (!posts.length) { postsList.innerHTML = '<p class="empty">Aucun article pour l\'instant.</p>'; }
       else {
         postsList.innerHTML = posts.slice(0, 5).map(p => `
           <li>
-            <a class="post-title" href="/posts/${p.slug}.html">${p.title}</a>
+            <a class="post-title" href="${ROOT}posts/${p.slug}.html">${p.title}</a>
             <span class="post-date">${formatDate(p.date)}</span>
           </li>`).join('');
       }
@@ -41,7 +40,7 @@ async function loadHome() {
 
   if (projectsGrid) {
     try {
-      const projects = await fetchJSON('/data/projects.json');
+      const projects = await fetchJSON('data/projects.json');
       if (!projects.length) { projectsGrid.innerHTML = '<p class="empty">Aucun projet pour l\'instant.</p>'; }
       else {
         projectsGrid.innerHTML = projects.map(p => `
@@ -64,11 +63,11 @@ async function loadBlog() {
   const list = document.getElementById('all-posts');
   if (!list) return;
   try {
-    const posts = await fetchJSON('/data/posts.json');
+    const posts = await fetchJSON('data/posts.json');
     if (!posts.length) { list.innerHTML = '<p class="empty">Aucun article pour l\'instant.</p>'; return; }
     list.innerHTML = '<ul class="post-list">' + posts.map(p => `
       <li>
-        <a class="post-title" href="/posts/${p.slug}.html">${p.title}</a>
+        <a class="post-title" href="${ROOT}posts/${p.slug}.html">${p.title}</a>
         <span class="post-date">${formatDate(p.date)}</span>
       </li>`).join('') + '</ul>';
   } catch { list.innerHTML = '<p class="loading">Erreur de chargement.</p>'; }
@@ -79,7 +78,7 @@ async function loadPortfolio() {
   const grid = document.getElementById('all-projects');
   if (!grid) return;
   try {
-    const projects = await fetchJSON('/data/projects.json');
+    const projects = await fetchJSON('data/projects.json');
     if (!projects.length) { grid.innerHTML = '<p class="empty">Aucun projet pour l\'instant.</p>'; return; }
     grid.innerHTML = '<div class="project-grid">' + projects.map(p => `
       <div class="project-card">
