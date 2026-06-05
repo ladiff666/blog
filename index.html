@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Blog</title>
+  <meta name="description" content="Blog personnel — projets et articles tech." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <a class="brand" href="/">Mon Blog</a>
+      <nav>
+        <a href="/">Accueil</a>
+        <a href="/blog.html">Articles</a>
+        <a href="/portfolio.html">Projets</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Salut, moi c'est [Ton Prénom] 👋</h1>
+      <p>Je partage ici mes projets, expériences et réflexions sur le dev.</p>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2>Derniers articles</h2>
+        <a href="/blog.html">Voir tout →</a>
+      </div>
+      <ul class="post-list" id="posts-list">
+        <li class="loading">Chargement…</li>
+      </ul>
+    </section>
+
+    <section style="margin-top: 3rem;">
+      <div class="section-header">
+        <h2>Projets récents</h2>
+        <a href="/portfolio.html">Voir tout →</a>
+      </div>
+      <div class="project-grid" id="projects-grid">
+        <p class="loading">Chargement…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 · Construit avec HTML/CSS/JS · <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

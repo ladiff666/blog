@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Projet exemple",
+    "description": "Une courte description de ce que fait ce projet et la techno utilisée.",
+    "tags": ["Python", "API"],
+    "repo": "https://github.com/tonusername/projet-exemple",
+    "demo": ""
+  }
+]
